@@ -48,7 +48,7 @@
     contents:
 
     - action: integrations
-      branch: master
+      branch: djova/dbm-beta-docs
       globs:
       - "*/metadata.csv"
       - "*/manifest.json"
@@ -56,7 +56,7 @@
       - "*/README.md"
 
     - action: pull-and-push-folder
-      branch: master
+      branch: djova/dbm-beta-docs
       globs:
       - docs/dev/*.md
       options:

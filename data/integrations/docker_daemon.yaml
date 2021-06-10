@@ -309,15 +309,6 @@ docker_daemon:
   per_unit_name: ''
   short_name: mem swap median
   unit_name: byte
-- description: The number of open file descriptors
-  integration: docker
-  interval: ''
-  metric_name: docker.container.open_fds
-  metric_type: gauge
-  orientation: '0'
-  per_unit_name: ''
-  short_name: open_fds
-  unit_name: file
 - description: Total size of all the files in the container which have been created
     or changed by processes running in the container
   integration: docker

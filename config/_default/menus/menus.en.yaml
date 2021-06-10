@@ -1631,6 +1631,11 @@ main:
     identifier: tracing_troubleshooting_php_5_deep_call_stacks
     parent: tracing_troubleshooting
     weight: 1605
+  - name: Database Monitoring
+    url: database_monitoring/
+    pre: nav_tracing
+    identifier: dbm
+    weight: 150000
   - name: CI Visibility
     url: continuous_integration/
     pre: nav_ci
@@ -2614,6 +2619,9 @@ footer_product:
   - name: Incident Management
     url: 'https://www.datadoghq.com/product/incident-management/'
     weight: 136
+  - name: Database Monitoring
+    url: 'https://www.datadoghq.com/'
+    weight: 137
   - name: Serverless
     url: 'https://www.datadoghq.com/product/serverless-monitoring/'
     weight: 140

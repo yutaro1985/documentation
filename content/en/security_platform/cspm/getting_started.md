@@ -35,7 +35,7 @@ Navigate to the [Getting Started page][1] to configure your environment for scan
 
 ### Product configuration
 
-Select `Posture Management`. You can also configure multiple products at once by selecting their checkbox.
+Select `Posture Management example`. You can also configure multiple products at once by selecting their checkbox.
 
 ### Assess your cloud environment
 

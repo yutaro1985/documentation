@@ -13,6 +13,8 @@ aliases:
 
 To submit an event from a custom Agent Check use the `event(<EVENT_DICT>)` function:
 
+Sample change
+
 ```text
 self.event(
             {

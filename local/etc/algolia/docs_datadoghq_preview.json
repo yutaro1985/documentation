@@ -81,15 +81,6 @@
             "page_rank": 20
         },
         {
-            "url": "https://docs.datadoghq.com(?P<localisation>.*?)/integrations/",
-            "selectors_key": "integrations",
-            "variables": {
-                "localisation": ["", "/fr", "/ja"]
-            },
-            "tags": ["integrations"],
-            "page_rank": 90
-        },
-        {
             "url": "https://docs.datadoghq.com(?P<localisation>.*?)/integrations/(?P<section>.*?)",
             "selectors_key": "docs",
             "variables": {
@@ -100,6 +91,15 @@
             },
             "tags": ["integrations"],
             "page_rank": 110
+        },
+        {
+            "url": "https://docs.datadoghq.com(?P<localisation>.*?)/integrations/",
+            "selectors_key": "integrations",
+            "variables": {
+                "localisation": ["", "/fr", "/ja"]
+            },
+            "tags": ["integrations"],
+            "page_rank": 90
         },
         {
             "url": "https://docs.datadoghq.com(?P<localisation>.*?)/(?P<section>.*?)/",

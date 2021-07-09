@@ -81,7 +81,7 @@
             "page_rank": 20
         },
         {
-            "url": "https://docs.datadoghq.com(?P<localisation>.*?)/integrations/azure",
+            "url": "https://docs.datadoghq.com(?P<localisation>.*?)/integrations/azure/",
             "selectors_key": "docs",
             "variables": {
                 "localisation": ["", "/fr", "/ja"]

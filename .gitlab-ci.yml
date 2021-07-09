@@ -185,7 +185,7 @@ missing_tms_preview:
 
 index_algolia_preview:
   image:
-    name: 486234852809.dkr.ecr.us-east-1.amazonaws.com/docsearch-scraper:v2978988-4692ed5-0.8
+    name: 486234852809.dkr.ecr.us-east-1.amazonaws.com/docsearch-scraper:v4924400-8f7f677-1.15.0
     entrypoint: [""] # force an empty entrypoint (see https://gitlab.com/gitlab-org/gitlab-runner/issues/2692)
   tags: [ "runner:main","size:2xlarge" ]
   stage: post-deploy
@@ -198,8 +198,6 @@ index_algolia_preview:
     - |-
         echo APPLICATION_ID=$(get_secret 'ci.documentation.algolia_docsearch_application_id') > .env
         echo API_KEY=$(get_secret 'ci.documentation.algolia_docsearch_api_key') >> .env
-        export DISPLAY=:99
-        Xvfb :99 -ac &
         echo "n" | docsearch run ./local/etc/algolia/docs_datadoghq_preview.json
   dependencies:
     - build_preview
@@ -311,7 +309,7 @@ test_live_link_checks:
 
 index_algolia:
   image:
-    name: 486234852809.dkr.ecr.us-east-1.amazonaws.com/docsearch-scraper:v2978988-4692ed5-0.8
+    name: 486234852809.dkr.ecr.us-east-1.amazonaws.com/docsearch-scraper:v4924400-8f7f677-1.15.0
     entrypoint: [ "" ] # force an empty entrypoint (see https://gitlab.com/gitlab-org/gitlab-runner/issues/2692)
   tags: ["runner:main","size:2xlarge"]
   stage: post-deploy
@@ -324,8 +322,6 @@ index_algolia:
     - |-
       echo APPLICATION_ID=$(get_secret 'ci.documentation.algolia_docsearch_application_id') > .env
       echo API_KEY=$(get_secret 'ci.documentation.algolia_docsearch_api_key') >> .env
-      export DISPLAY=:99
-      Xvfb :99 -ac &
       echo "n" | docsearch run ./local/etc/algolia/docs_datadoghq.json
   dependencies:
     - build_live

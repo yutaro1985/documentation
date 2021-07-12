@@ -188,14 +188,12 @@
         },
         "integrations": {
             "lvl0": {
-                "selector": ".h-100 .sidenav-nav > ul >li.open > a",
+                "selector": ".main h1",
                 "global": true,
                 "default_value": "Integrations"
             },
-            "lvl1": ".main h1",
-            "lvl2": ".main h2",
-            "lvl3": ".main h3",
-            "lvl4": ".main h4",
+            "lvl1": ".integrations-breadcrumbs > a[href='#']",
+            "lvl2": ".main p",
             "text": ".main p, .main ul > li, table tbody tr, .table-metrics tr, pre code",
             "language": {
                 "selector": "/html/@lang",

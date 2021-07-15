@@ -179,12 +179,13 @@
         },
         "integrations": {
             "lvl0": {
-                "selector": ".main h1",
                 "global": true,
+                "default_value": "Documentation"
+            },
+            "lvl1": {
                 "default_value": "Integrations"
             },
-            "lvl1": ".integrations-breadcrumbs > a[href='#']",
-            "lvl2": ".main p",
+            "lvl2": ".main h1",
             "text": ".main p, .main ul > li, table tbody tr, .table-metrics tr, pre code",
             "language": {
                 "selector": "/html/@lang",

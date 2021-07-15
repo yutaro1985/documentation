@@ -179,10 +179,12 @@
         },
         "integrations": {
             "lvl0": {
+                "selector":".h-100 .sidenav-nav > ul >li.open > a",
                 "global": true,
                 "default_value": "Documentation"
             },
             "lvl1": {
+                "selector":".integrations-breadcrumbs a:nth-child(2)",
                 "default_value": "Integrations"
             },
             "lvl2": ".main h1",

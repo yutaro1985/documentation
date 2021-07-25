@@ -1,0 +1,12 @@
+{{- $isLocalServer := .Site.IsServer -}}
+{{- $devOpts := dict "defines" $defines "targetPath" $jsOutput "sourceMap" "external" -}}
+{{- $prodOpts := dict "defines" $defines "targetPath" $jsOutput "sourceMap" "external" "minify" true -}}
+{{- $options := cond $isLocalServer $devOpts $prodOpts -}}
+{{- 
+  $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`)
+  "process.env.NODE_ENV" `"development"` 
+-}}
+
+{{- $js := resources.Get "scripts/main.js" | js.Build $options -}}
+
+<script src="{{ $js.Permalink }}"></script>

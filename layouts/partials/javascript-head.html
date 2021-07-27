@@ -1,14 +1,26 @@
 <!-- JS files that are loading in the <head> -->
 {{/* inline datadog rum & logs libs, then load config after as config changes every builds due to version */}}
 
-{{- $langRedirects := resources.Get "scripts/lang-redirects.js" -}}
-{{- $regionRedirects := resources.Get "scripts/region-redirects.js" -}}
+{{ $isLocalServer := .Site.IsServer }}
+{{ $outputJS := "" }}
+{{ $options := "" }}
+{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) }}
+
+{{ if $isLocalServer }}
+  {{ $options = dict "defines" $defines "sourceMap" "inline" }}
+{{ else }}
+  {{ $options = dict "defines" $defines "sourceMap" "inline" "minify" true }}
+{{ end }}
+
+{{- $langRedirects := resources.Get "scripts/lang-redirects.js" | js.Build $options -}}
+{{- $regionRedirects := resources.Get "scripts/region-redirects.js" | js.Build $options -}}
 {{- $dd_rum := resources.Get "node_modules/datadog-rum.js" -}}
 {{- $dd_logs := resources.Get "node_modules/datadog-logs.js" -}}
 {{- $dd_libs_js := slice $dd_rum $dd_logs | resources.Concat "js/dd-libs.js" -}}
-{{- $dd_browser_logs_rum := resources.Get "scripts/components/dd-browser-logs-rum.js" -}}
+{{- $dd_browser_logs_rum := resources.Get "scripts/components/dd-browser-logs-rum.js" | js.Build $options -}}
 
 <script>{{ $dd_libs_js.Content | safeJS }}</script>
+
 <script type="text/javascript" src="{{ $dd_browser_logs_rum.Permalink }}"></script>
 <script type="text/javascript" src="{{ $langRedirects.Permalink }}"></script>
 <script type="text/javascript" src="{{ $regionRedirects.Permalink }}"></script>

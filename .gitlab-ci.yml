@@ -87,7 +87,7 @@ build_preview:
   script:
     - echo "test log" > foo.txt
     #- curl -Is https://http-intake.logs.datadoghq.com/v1/input
-    - curl -X POST "https://http-intake.logs.datadoghq.com/v1/input?service=docs&ddsource=gitlab&ddtags=env:preview" -H "Content-Type: text/plain" -H "DD-API-KEY:$(get_secret 'dd_synthetic_api_key_prod')" -d @foo.txt
+    - 'curl -X POST "https://http-intake.logs.datadoghq.com/v1/input?service=docs&ddsource=gitlab&ddtags=env:preview" -H "Content-Type: text/plain" -H "DD-API-KEY:$(get_secret \"dd_synthetic_api_key_prod\")" -d @foo.txt'
     #- upload_logs
   artifacts:
     paths:

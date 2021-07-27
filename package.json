@@ -20,8 +20,8 @@
         "deploy:preview": "./node_modules/.bin/hugo deploy --target preview -e preview --maxDeletes -1 --invalidateCDN --log --verbose",
         "deploy:liveAssets": "./node_modules/.bin/hugo deploy --target liveAssets -e live --maxDeletes 0 --log --verbose --debug",
         "deploy:live": "./node_modules/.bin/hugo deploy --target live -e live --maxDeletes -1 --log --verbose --debug",
-        "build:apiPages": "node -e 'require(\"./src/scripts/build-api-pages.js\").init()'",
-        "dereference": "node ./src/scripts/dereference.js",
+        "build:apiPages": "node -e 'require(\"./assets/src/scripts/build-api-pages.js\").init()'",
+        "dereference": "node ./assets/src/scripts/dereference.js",
         "test": "./node_modules/.bin/jest",
         "check-links": "node node_modules/link-checker/dd-link-checker.js"
     },
@@ -72,7 +72,7 @@
         "tiny-async-pool": "^1.0.4",
         "translate": "https://s3.amazonaws.com/origin-static-assets/corp-node-packages/master/translate-v1.0.37.tgz",
         "traverse": "0.6.6",
-        "webpack": "^4.42.1",
+        "webpack": "^5.47.0",
         "yaml-lint": "^1.2.4"
     },
     "devDependencies": {

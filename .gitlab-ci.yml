@@ -85,9 +85,9 @@ build_preview:
     CONFIGURATION_FILE: "./local/bin/py/build/configurations/pull_config_preview.yaml"
     LOCAL: "False"
   script:
-    - echo "test"
-    - curl -Is https://http-intake.logs.datadoghq.com/v1/input
-    - curl -X POST "https://http-intake.logs.datadoghq.com/v1/input
+    - echo "test log" > foo.txt
+    #- curl -Is https://http-intake.logs.datadoghq.com/v1/input
+    - curl -X POST "https://http-intake.logs.datadoghq.com/v1/input?service=docs&ddsource=gitlab&ddtags=env:preview" -H "Content-Type: text/plain" -H "DD-API-KEY:$(get_secret 'dd_synthetic_api_key_prod')" -d @foo.txt
     #- upload_logs
   artifacts:
     paths:

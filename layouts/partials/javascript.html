@@ -1,10 +1,21 @@
-{{- $isLocalServer := .Site.IsServer -}}
-{{- $jsMain := "scripts/main.js" -}}
-{{- $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) "process.env.NODE_ENV" `"development"` -}}
-{{- $devOpts := dict "defines" $defines "targetPath" $jsMain "sourceMap" "inline" -}}
-{{- $prodOpts := dict "defines" $defines "targetPath" $jsMain "sourceMap" "inline" "minify" true -}}
-{{- $options := cond $isLocalServer $devOpts $prodOpts -}}
+{{ $isLocalServer := .Site.IsServer }}
+{{ $jsMain := "scripts/main.js" }}
+{{ $outputJS := "" }}
+{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) "process.env.NODE_ENV" `"development"` }}
+{{ $devOpts := dict "defines" $defines "targetPath" $jsMain "sourceMap" "inline" }}
+{{ $prodOpts := dict "defines" $defines "targetPath" $jsMain "sourceMap" "inline" "minify" true }}
+{{ $options := cond $isLocalServer $devOpts $prodOpts }}
+{{ $jQuery := resources.Get "scripts/jquery.min.js" }}
 
-{{- $js := resources.Get $jsMain | js.Build $options -}}
+{{ if $isLocalServer }}
+  {{ $outputJS := resources.Get $jsMain | js.Build $options }}
+{{ else }}
+  {{ $outputJS := resources.Get $jsMain | js.Build $options | resources.Fingerprint "sha512" }}
+{{ end }}
 
-<script type="text/javascript" src="{{ $js.Permalink }}"></script>
+<script src="{{ $jQuery.Permalink }}"></script>
+
+{{ if $isLocalServer }}
+  <script type="text/javascript" src="{{ $outputJS.Permalink }}" defer></script>
+{{ else }}
+

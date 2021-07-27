@@ -85,12 +85,22 @@ build_preview:
     CONFIGURATION_FILE: "./local/bin/py/build/configurations/pull_config_preview.yaml"
     LOCAL: "False"
   script:
-    - echo "test log" > foo.txt
-    #- curl -Is https://http-intake.logs.datadoghq.com/v1/input
-    - |-
-      DATADOG_API_KEY="$(get_secret 'dd_synthetic_api_key_prod')"
-      curl -X POST "https://http-intake.logs.datadoghq.com/v1/input?service=docs&ddsource=gitlab&ddtags=env:preview" -H "Content-Type: text/plain" -H "DD-API-KEY:${DATADOG_API_KEY}" -d @foo.txt
-    #- upload_logs
+    - post_dd_event "documentation deploy ${CI_COMMIT_REF_NAME} started" "${CI_PROJECT_URL}/pipelines/${CI_PIPELINE_ID}" "info"
+    - touch Makefile.config
+    - make BRANCH=${CI_COMMIT_REF_NAME} examples
+    - sync_integration_descriptions
+    - ./local/bin/py/build/pull_rbac.py $(get_secret 'dd_api_key') $(get_secret 'dd-app-key')
+    #- sync_integration_descriptions_cached
+    - placehold_translations
+    - update_preview_baseurl
+    - yarn run build:preview
+    # remove service_checks json as we don't need to s3 push that..
+    - rm -rf data/service_checks
+    - in-isolation deploy_preview > logs/deploy.txt
+    # remove static images so we can skip from artifact passed in gitlab
+    - remove_static_from_repo
+    - notify_slack "<https://github.com/DataDog/documentation/commit/${CI_COMMIT_SHA}|${CI_COMMIT_REF_NAME}> is ready for preview. <${CI_PROJECT_URL}/pipelines/${CI_PIPELINE_ID}| checks running>." "#31b834"
+    - upload_logs
   artifacts:
     paths:
       - ${ARTIFACT_RESOURCE}

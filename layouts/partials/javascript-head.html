@@ -20,9 +20,12 @@
 
 {{/* inline datadog rum & logs libs, then load config after as config changes every builds due to version */}}
 <script>{{ $dd_libs_js.Content | safeJS }}</script>
+<script>{{ $langRedirects.Content | safeJS }}</script>
+<script>{{ $regionRedirects.Content | safeJS }}</script>
 
-<script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script>
-<script type="text/javascript" src="{{ $langRedirects.RelPermalink }}"></script>
-<script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script>
+<!-- <script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script> -->
+
+<!-- <script type="text/javascript" src="{{ $langRedirects.RelPermalink }}"></script>
+<script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script> -->
 
 

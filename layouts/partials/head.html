@@ -28,7 +28,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <link rel="icon" type="image/png" href="https://docs.datadoghq.com/favicon.ico">
 
-  {{- partial "javascript-head.html" . -}}
+  {{- partialCached "javascript-head.html" . -}}
   {{- partialCached "css.html" . -}}
 
   {{- if ne $.Params.disable_opengraph_meta_tags true -}}

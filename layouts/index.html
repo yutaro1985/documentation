@@ -17,34 +17,25 @@
     {{ $.Scratch.Set "data" $dot.Page.Site.Data.partials.home }}
 {{ end }}
 {{ $datafile := ($.Scratch.Get "data") }}
-
-
-
 {{- $bodyClass := $.Scratch.Get "bodyClass" -}}
 {{- $customClass := $.Params.customclass -}}
+
 <body class="{{ .Site.Language.Lang }} {{ if .Kind }}kind-{{.Kind}}{{ end }} {{ if .IsPage }} {{ replace $.Type "/" "-" }} {{ else }} {{ .Section }} {{ end }} {{ $bodyClass }} {{ $customClass }} {{ if .Site.Params.announcement_banner }}announcement{{ end }}">
-
-
     {{ partial "header/header.html" . }}
-
     {{ partial "home-header.html" . }}
 
     <main class="container pb-2">
-
         <section class="row guides justify-content-center">
                 {{ range $i, $guide := $datafile.guides }}
                     <div class=" guide-col d-flex flex-column">
                             <div class="inner-content">
                             <div class="guide-no">{{ add $i 1}}.</div>
                         <h5 class="text-black text-uppercase pt-0 mt-0">{{ $guide.title}} </h5>
-
                             <p class="small">{{ $guide.desc }}</p>
                             <div class="mt-auto">
                                     <a class="smaller font-semibold text-primary" href="{{ $guide.link | absLangURL }}">{{ $guide.link_text }} ></a>
                             </div>
                         </div>
-
-
                     </div>
 
                     {{ if ne $i 2 }}
@@ -96,6 +87,6 @@
     {{ partial "footer-scripts.html" . }}
     {{ partial "footer-js-dd-docs-methods" . }}
     {{ partial "preview_banner/preview_banner" . }}
-    {{ partial "javascript.html" . }}
+    {{ partialCached "javascript.html" . }}
 </body>
 </html>

@@ -1,5 +1,4 @@
 <!-- JS files that are loading in the <head> -->
-{{/* inline datadog rum & logs libs, then load config after as config changes every builds due to version */}}
 
 {{ $isLocalServer := .Site.IsServer }}
 {{ $outputJS := "" }}
@@ -19,10 +18,11 @@
 {{- $dd_libs_js := slice $dd_rum $dd_logs | resources.Concat "js/dd-libs.js" -}}
 {{- $dd_browser_logs_rum := resources.Get "scripts/components/dd-browser-logs-rum.js" | js.Build $options -}}
 
+{{/* inline datadog rum & logs libs, then load config after as config changes every builds due to version */}}
 <script>{{ $dd_libs_js.Content | safeJS }}</script>
 
-<script type="text/javascript" src="{{ $dd_browser_logs_rum.Permalink }}"></script>
-<script type="text/javascript" src="{{ $langRedirects.Permalink }}"></script>
-<script type="text/javascript" src="{{ $regionRedirects.Permalink }}"></script>
+<script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script>
+<script type="text/javascript" src="{{ $langRedirects.RelPermalink }}"></script>
+<script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script>
 
 

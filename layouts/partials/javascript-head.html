@@ -3,32 +3,30 @@
 {{ $options := "" }}
 {{ $langRedirects := "" }}
 {{ $regionRedirects := "" }}
-{{ $ddBrowserLogsRum := "" }}
 {{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) }}
 
 {{ if $isLocalServer }}
   {{ $options = dict "defines" $defines "sourceMap" "inline" }}
   {{ $langRedirects = resources.Get "scripts/lang-redirects.js" | js.Build $options }}
   {{ $regionRedirects = resources.Get "scripts/region-redirects.js" | js.Build $options }}
-  {{ $ddBrowserLogsRum = resources.Get "scripts/components/dd-browser-logs-rum.js" | js.Build $options }}
 {{ else }}
   {{ $options = dict "defines" $defines "sourceMap" "inline" "minify" true }}
   {{ $langRedirects = resources.Get "scripts/lang-redirects.js" | js.Build $options | resources.Fingerprint "sha512" }}
   {{ $regionRedirects = resources.Get "scripts/region-redirects.js" | js.Build $options | resources.Fingerprint "sha512" }}
-  {{ $ddBrowserLogsRum = resources.Get "scripts/components/dd-browser-logs-rum.js" | js.Build $options | resources.Fingerprint "sha512" }}
 {{ end }}
 
 {{- $dd_rum := resources.Get "node_modules/datadog-rum.js" -}}
 {{- $dd_logs := resources.Get "node_modules/datadog-logs.js" -}}
 {{- $dd_libs_js := slice $dd_rum $dd_logs | resources.Concat "js/dd-libs.js" -}}
+{{- $dd_browser_logs_rum := resources.Get "scripts/components/dd-browser-logs-rum.js" | js.Build $options -}}
+
 <script>{{ $dd_libs_js.Content | safeJS }}</script>
+<script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script>
 
 {{ if $isLocalServer }}
   <script type="text/javascript" src="{{ $langRedirects.RelPermalink }}"></script>
   <script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script>
-  <script type="text/javascript" src="{{ $ddBrowserLogsRum.RelPermalink }}"></script>
 {{ else }}
   <script type="text/javascript" src="{{ $langRedirects.RelPermalink }}" integrity="{{ $langRedirects.Data.Integrity }}"></script>
   <script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}" integrity="{{ $regionRedirects.Data.Integrity }}"></script>
-  <script type="text/javascript" src="{{ $ddBrowserLogsRum.RelPermalink }}" integrity="{{ $ddBrowserLogsRum.Data.Integrity }}"></script>
 {{ end }}

@@ -1,17 +1,29 @@
 <!-- JS files that are loading in the <head> -->
 
 {{ $isLocalServer := .Site.IsServer }}
-{{ $options := "" }}
 {{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) }}
+{{ $options := "" }}
+{{ $outputLangRedirects := "" }}
+{{ $outputRegionRedirects := "" }}
 
 {{ if $isLocalServer }}
   {{ $options = dict "defines" $defines "sourceMap" "inline" }}
+  {{ $outputLangRedirects = resources.Get "scripts/lang-redirects.js" | js.Build $options }}
+  {{ $outputRegionRedirects = resources.Get "scripts/region-redirects.js" | js.Build $options }}
 {{ else }}
   {{ $options = dict "defines" $defines "sourceMap" "inline" "minify" true }}
+  {{ $outputLangRedirects = resources.Get "scripts/lang-redirects.js" | js.Build $options | resources.Fingerprint "sha512" }}
+  {{ $outputRegionRedirects = resources.Get "scripts/region-redirects.js" | js.Build $options | resources.Fingerprint "sha512" }}
 {{ end }}
 
-{{- $langRedirects := resources.Get "scripts/lang-redirects.js" | js.Build $options -}}
-{{- $regionRedirects := resources.Get "scripts/region-redirects.js" | js.Build $options -}}
+{{ if $isLocalServer }}
+  <script type="text/javascript" src="{{ $outputLangRedirects.RelPermalink }}"></script>
+  <script type="text/javascript" src="{{ $outputRegionRedirects.RelPermalink }}"></script>
+{{ else }}
+  <script type="text/javascript" src="{{ $outputLangRedirects.RelPermalink }}" integrity="{{ $outputLangRedirects.Data.Integrity }}"></script>
+  <script type="text/javascript" src="{{ $outputRegionRedirects.RelPermalink }}" integrity="{{ $outputRegionRedirects.Data.Integrity }}"></script>
+{{ end }}
+
 {{- $dd_rum := resources.Get "node_modules/datadog-rum.js" -}}
 {{- $dd_logs := resources.Get "node_modules/datadog-logs.js" -}}
 {{- $dd_libs_js := slice $dd_rum $dd_logs | resources.Concat "js/dd-libs.js" -}}
@@ -19,7 +31,5 @@
 
 <script>{{ $dd_libs_js.Content | safeJS }}</script>
 <script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script>
-<script type="text/javascript" src="{{ $langRedirects.RelPermalink }}"></script>
-<script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script>
 
 

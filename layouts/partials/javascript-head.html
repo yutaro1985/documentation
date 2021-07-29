@@ -1,15 +1,13 @@
 <!-- JS files that are loading in the <head> -->
 
-<!-- {{ $isLocalServer := .Site.IsServer }}
-{{ $jsMain := "scripts/main.js" }}
-{{ $outputJS := "" }}
+{{ $isLocalServer := .Site.IsServer }}
 {{ $options := "" }}
 {{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) }}
 
 {{ if $isLocalServer }}
-  {{ $options = dict "defines" $defines "targetPath" $jsMain "sourceMap" "inline" }}
+  {{ $options = dict "defines" $defines "sourceMap" "inline" }}
 {{ else }}
-  {{ $options = dict "defines" $defines "targetPath" $jsMain "sourceMap" "inline" "minify" true }}
+  {{ $options = dict "defines" $defines "sourceMap" "inline" "minify" true }}
 {{ end }}
 
 {{- $langRedirects := resources.Get "scripts/lang-redirects.js" | js.Build $options -}}
@@ -22,6 +20,6 @@
 <script>{{ $dd_libs_js.Content | safeJS }}</script>
 <script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script>
 <script type="text/javascript" src="{{ $langRedirects.RelPermalink }}"></script>
-<script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script> -->
+<script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}"></script>
 
 

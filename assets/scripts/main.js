@@ -10,3 +10,5 @@ import './components/api';
 import './components/code-languages';
 import './components/language-select';
 import './components/bootstrap-dropdown-custom';
+// eslint-disable-next-line import/no-unresolved
+import './components/nav-logo-download.js'; // Imported from websites-modules

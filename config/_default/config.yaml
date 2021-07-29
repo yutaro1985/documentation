@@ -41,6 +41,8 @@ module:
        target: layouts/partials/announcement_banner.html
      - source: assets/scss/components/_announcement-banner.scss
        target: assets/styles/components/_announcement-banner.scss
+     - source: assets/js/components/nav-logo-download.js
+       target: assets/scripts/components/nav-logo-download.js
 
   mounts:
     # default mounts

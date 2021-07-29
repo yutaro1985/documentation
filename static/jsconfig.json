@@ -3,6 +3,7 @@
   "baseUrl": ".",
   "paths": {
    "*": [
+    "../../../../../var/folders/jl/pwmq1y395954qj66zwrkd1jm0000gn/T/hugo_cache/modules/filecache/modules/pkg/mod/github.com/!data!dog/websites-modules@v1.2.1/assets/js/components/nav-logo-download.js/*",
     "../assets/*"
    ]
   }

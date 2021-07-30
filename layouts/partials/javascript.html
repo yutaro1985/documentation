@@ -2,7 +2,7 @@
 {{ $jsMain := "scripts/main.js" }}
 {{ $outputJS := "" }}
 {{ $options := "" }}
-{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default "TEST") "process.env.NODE_ENV" "development" "process.env.RESET_APP_DATA_TIMER" `10` }}
+{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) "process.env.NODE_ENV" `"development"` "process.env.RESET_APP_DATA_TIMER" `10` }}
 {{ $jQuery := resources.Get "scripts/jquery.min.js" }}
 
 {{ if $isLocalServer }}

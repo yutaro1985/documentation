@@ -31,7 +31,6 @@
       <div class="mainContent-wrapper order-2 order-lg-0 col-12 {{ if eq .Params.disable_sidebar true }}col-lg-9{{ else }}col-lg-7{{ end }} main">
         <div class="{{ if and (eq $.Section "integrations") (eq $.Kind "page") }}integrations-single{{ end }}"
           id="mainContent">
-          CI COMMIT test: {{ getenv "CI_COMMIT_SHORT_SHA" }}
           {{ block "main" . }}{{ end }}
           {{ partial "page-edit.html" (dict "ctx" $ctx "type" "contribute") }}
         </div>

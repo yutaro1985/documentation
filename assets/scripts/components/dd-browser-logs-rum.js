@@ -19,7 +19,7 @@ if (window.DD_RUM) {
             clientToken: Config.ddClientToken,
             env,
             service: 'docs',
-            version: CI_COMMIT_SHORT_SHA,
+            version: 1234,
             trackInteractions: true,
             allowedTracingOrigins: [window.location.origin]
         });
@@ -35,7 +35,7 @@ if (window.DD_LOGS) {
         forwardErrorsToLogs: true,
         env,
         service: 'docs',
-        version: CI_COMMIT_SHORT_SHA
+        version: 1234
     });
     // global context
     window.DD_LOGS.addLoggerGlobalContext('host', window.location.host);

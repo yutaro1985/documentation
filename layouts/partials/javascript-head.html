@@ -1,9 +1,9 @@
 <!-- JS files that are loading in the <head> -->
-<!-- {{ $isLocalServer := .Site.IsServer }}
+{{ $isLocalServer := .Site.IsServer }}
 {{ $options := "" }}
 {{ $langRedirects := "" }}
 {{ $regionRedirects := "" }}
-{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default "TEST") }}
+{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) }}
 
 {{ if $isLocalServer }}
   {{ $options = dict "defines" $defines "sourceMap" "inline" }}
@@ -29,5 +29,5 @@
 {{ else }}
   <script type="text/javascript" src="{{ $langRedirects.RelPermalink }}" integrity="{{ $langRedirects.Data.Integrity }}"></script>
   <script type="text/javascript" src="{{ $regionRedirects.RelPermalink }}" integrity="{{ $regionRedirects.Data.Integrity }}"></script>
-{{ end }} -->
+{{ end }}
   

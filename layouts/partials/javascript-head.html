@@ -20,7 +20,7 @@
 {{- $dd_libs_js := slice $dd_rum $dd_logs | resources.Concat "js/dd-libs.js" -}}
 {{- $dd_browser_logs_rum := resources.Get "scripts/components/dd-browser-logs-rum.js" | js.Build $options -}}
 
-<script>{{ $dd_libs_js.Content | safeJS }}</script>
+<script>{{ $dd_browser_logs_rum.Content | safeJS }}</script>
 <script type="text/javascript" src="{{ $dd_browser_logs_rum.RelPermalink }}"></script>
 
 {{ if $isLocalServer }}

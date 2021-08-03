@@ -3,8 +3,7 @@
 {{ $options := "" }}
 {{ $langRedirects := "" }}
 {{ $regionRedirects := "" }}
-{{ $ci_commit_sha := (getenv CI_COMMIT_SHORT_SHA | default "") }}
-{{ $defines := dict "CI_COMMIT_SHORT_SHA" $ci_commit_sha }}
+{{ $defines := dict "CI_COMMIT_SHORT_SHA" (getenv "CI_COMMIT_SHORT_SHA" | default `""`) "process.env.NODE_ENV" `"development"` "process.env.RESET_APP_DATA_TIMER" `10` }}
 
 {{ if $isLocalServer }}
   {{ $options = dict "defines" $defines "sourceMap" "inline" }}

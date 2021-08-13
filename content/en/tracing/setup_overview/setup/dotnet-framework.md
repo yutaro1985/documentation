@@ -130,6 +130,39 @@ SET COR_PROFILER={846F5F1C-F9AE-4B07-969E-05C26BC060D8}
 rem Start application
 example.exe
 ```
+
+### Custom instrumentation
+
+{{< tabs >}}
+
+{{% tab "Windows" %}}
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> If you are using both automatic and custom instrumentation, it is important to keep the MSI version in sync with the `Datadog.Trace` NuGet package.
+</div>
+
+1. Add the `Datadog.Trace` [NuGet package][5] to your application.
+2. In your application code, access the global tracer through the `Datadog.Trace.Tracer.Instance` property to create new spans.
+
+For additional details on custom instrumentation and custom tagging, see [.NET Custom Instrumentation][6].
+
+{{% /tab %}}
+
+{{% tab "Linux" %}}
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> If you are using both automatic and custom instrumentation, it is important to keep the Linux package version in sync with the `Datadog.Trace` NuGet package.
+</div>
+
+1. Add the `Datadog.Trace` [NuGet package][5] to your application.
+2. In your application code, access the global tracer through the `Datadog.Trace.Tracer.Instance` property to create new spans.
+
+For additional details on custom instrumentation and custom tagging, see [.NET Custom Instrumentation][6].
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
 ### Configure the Datadog Agent for APM
 
 Install and configure the Datadog Agent to receive traces from your instrumented application. By default the Datadog Agent is enabled in your `datadog.yaml` file under `apm_config` with `enabled: true` and listens for trace traffic at `localhost:8126`. For containerized environments, follow the in-app [Quickstart instructions][2] to enable trace collection within the Datadog Agent.
@@ -138,19 +171,6 @@ Install and configure the Datadog Agent to receive traces from your instrumented
 Ensure you set `DD_SITE` in the Datadog Agent to {{< region-param key="dd_site" code="true" >}} so that the Agent sends data to the right Datadog location.
 
 {{< /site-region >}}
-
-## Custom instrumentation
-
-<div class="alert alert-warning">
-  <strong>Note:</strong>  If you are using both automatic and custom instrumentation, it is important to keep the package versions (for example, MSI and NuGet) in sync.
-</div>
-
-To use custom instrumentation in your .NET application:
-
-1. Add the `Datadog.Trace` [NuGet package][5] to your application.
-2. In your application code, access the global tracer through the `Datadog.Trace.Tracer.Instance` property to create new spans.
-
-For additional details on custom instrumentation and custom tagging, see [.NET Custom Instrumentation][6].
 
 ## Configuration
 

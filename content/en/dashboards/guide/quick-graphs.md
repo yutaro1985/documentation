@@ -54,13 +54,19 @@ To query event data, follow this process:
 
 5. **[Apply additional functions][4]** (same as metrics)
 
+Quick Graphs supports contextual information for logs. With Quick Graphs, you can confirm you are querying and graphing the correct data through our inline data previews and detailed event views. The inline data will open automatically when you select **Logs** and can be closed using the button to the left of your query editor.
+
+{{< img src="dashboards/guide/quick_graph_data_preview.png" alt="quick graph inline data preview"  style="width:80%;">}}
+
+You can click individual log lines to open a detailed view in the [side panel][13].
+
 ### Select your visualization
 
 
 Quick Graphs supports:
-* [Timeseries][13]
-* [Top List][14]
-* [Query value][15]
+* [Timeseries][14]
+* [Top List][15]
+* [Query value][13]
 * [Geomap][16]
 
 ### Create a title
@@ -83,7 +89,7 @@ Click **Export** to save your work to a Dashboard or Notebook. You can always co
 [10]: /continuous_integration/explore_pipelines/
 [11]: /continuous_integration/explore_tests/
 [12]: /security_platform/cspm/findings/
-[13]: /dashboards/widgets/timeseries/
-[14]: /dashboards/widgets/top_list/
-[15]: /dashboards/widgets/query_value/
+[13]: /dashboards/widgets/query_value/
+[14]: /dashboards/widgets/timeseries/
+[15]: /dashboards/widgets/top_list/
 [16]: /dashboards/widgets/geomap/

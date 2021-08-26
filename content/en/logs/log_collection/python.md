@@ -65,7 +65,7 @@ import logging
 
 import json_log_formatter
 
-formatter = json_log_formatter.JSONFormatter()
+formatter = json_log_formatter.VerboseJSONFormatter()
 
 json_handler = logging.FileHandler(filename='/var/log/my-log.json')
 json_handler.setFormatter(formatter)

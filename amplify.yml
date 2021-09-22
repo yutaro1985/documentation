@@ -3,20 +3,21 @@ frontend:
   phases:
     preBuild:
       commands:
+        - "[ -d local/bin ] && find local/bin/ -type f -exec cp {} /usr/local/bin \\;"  # load scripts
+        - "[ -d local/etc ] && find local/etc/ -type f -exec cp {} /etc \\;"  # load configs
+        - "[ -f /usr/local/bin/helpers.sh ] && source /usr/local/bin/helpers.sh"  # source helpers so they are available in the container
+        - "[ -f /etc/profile ] && source /etc/profile" # for golang on path
+        - mkdir -p logs
         - curl -OL https://golang.org/dl/go1.15.7.linux-amd64.tar.gz
-        - tar -C /usr/local -xzf ./go1.15.7.linux-amd64.tar.gz
-        - wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz
-        - tar -xf hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz hugo
-        - mv hugo /usr/bin/hugo
-        - rm -rf hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz
-        - rm -rf site/static/video site/static/pdf site/static/admin site/static/img/video
         - hugo version
-        - nvm install $NODE_VERSION
         - yarn install --frozen-lockfile --cache-folder .yarn
     build:
       commands:
         - PATH=$PATH:/usr/local/go/bin
         - git config --global url."https://guacbot:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
+        - sync_integration_descriptions
+        - ./local/bin/py/build/pull_rbac.py $(get_secret 'dd_api_key') $(get_secret 'dd-app-key')
+        - placehold_translations
         - yarn run build:webpack
         - HUGO_RELATIVEURLS=true hugo -b / -v --minify --gc --environment $CI_ENVIRONMENT_NAME
   artifacts:

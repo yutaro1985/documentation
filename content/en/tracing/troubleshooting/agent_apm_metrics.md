@@ -238,5 +238,5 @@ Number of spans processed.
 : **Type**: Count<br>
 Number of traces processed.
 
-[1]: /tracing/setup/
+[1]: /trac-ing/setup/
 [2]: /resources/json/APM_monitoring_dashboard.json

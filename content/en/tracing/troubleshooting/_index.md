@@ -4,7 +4,7 @@ kind: documentation
 aliases:
     - /tracing/faq/my-trace-agent-log-renders-empty-service-error/
 further_reading:
-- link: "/tracing/troubleshooting/tracer_startup_logs/"
+- link: "/tracing/trouble-shooting/tracer_startup_logs/"
   tag: "Documentation"
   text: "Datadog tracer startup logs"
 - link: "/tracing/troubleshooting/tracer_debug_logs/"

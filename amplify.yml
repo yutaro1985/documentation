@@ -12,8 +12,7 @@ frontend:
         - rm -rf site/static/video site/static/pdf site/static/admin site/static/img/video
         - hugo version
         - nvm install $NODE_VERSION
-        - yarn install --freeze-lockfile
-        - npm install -g postcss postcss-cli
+        - yarn install --frozen-lockfile --cache-folder .yarn
     build:
       commands:
         - PATH=$PATH:/usr/local/go/bin
@@ -27,4 +26,5 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - node_modules/
+      - .yarn

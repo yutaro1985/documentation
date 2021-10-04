@@ -52,7 +52,7 @@ On Java 15 and lower, the allocation profiler is turned off by default because i
 
 To enable the allocation profiler, start your application with the `-Ddd.profiling.allocation.enabled=true` JVM setting or the `DD_PROFILING_ALLOCATION_ENABLED=true` environment variable.
 
-Alternatively, you can enable the following events in your `jfp` [override template file](#creating-and-using-a-jfr-template-override-file):
+Alternatively, you can enable the following events in your `jfp` [override template file](#broken-creating-and-using-a-jfr-template-override-file):
 
 ```
 jdk.ObjectAllocationInNewTLAB#enabled=true

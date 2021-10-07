@@ -108,6 +108,9 @@ In order to rehydrate log events from your archives, Datadog uses the IAM Role i
     {
       "Sid": "DatadogUploadAndRehydrateLogArchives",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<MY_AWS_ACCOUNT_NUMBER>:role/<MY_DATADOG_IAM_ROLE_NAME>"
+      },
       "Action": ["s3:PutObject", "s3:GetObject"],
       "Resource": [
         "arn:aws:s3:::<MY_BUCKET_NAME_1_/_MY_OPTIONAL_BUCKET_PATH_1>/*",
@@ -117,6 +120,9 @@ In order to rehydrate log events from your archives, Datadog uses the IAM Role i
     {
       "Sid": "DatadogRehydrateLogArchivesListBucket",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<MY_AWS_ACCOUNT_NUMBER>:role/<MY_DATADOG_IAM_ROLE_NAME>"
+      },
       "Action": "s3:ListBucket",
       "Resource": [
         "arn:aws:s3:::<MY_BUCKET_NAME_1>",

@@ -40,7 +40,7 @@ Ce guide décrit la marche à suivre pour configurer une archive afin de transf�
 {{< tabs >}}
 {{% tab "AWS S3" %}}
 
-Si ce n'est pas déjà fait, configurez l'[intégration AWS][1] pour le compte AWS associé à votre compartiment S3. 
+Si ce n'est pas déjà fait, configurez l'[intégration AWS][1] pour le compte AWS associé à votre compartiment S3.
 
 * En général, il est nécessaire de créer un rôle pouvant être utilisé par Datadog pour l'intégration à AWS S3.
 * Pour les comptes AWS GovCloud ou China uniquement, utilisez les clés d'accès comme alternative à la délégation de rôles.
@@ -112,6 +112,9 @@ Ajoutez les deux instructions d'autorisation suivantes aux stratégies IAM. Modi
     {
       "Sid": "DatadogUploadAndRehydrateLogArchives",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<NUMÉRO_COMPTE_AWS>:role/<NOM_RÔLE_IAM_DATADOG>"
+      },
       "Action": ["s3:PutObject", "s3:GetObject"],
       "Resource": [
         "arn:aws:s3:::<NOM_DU_BUCKET_1_/_CHEMIN_FACULTATIF_DU_BUCKET_1>/*",
@@ -121,6 +124,9 @@ Ajoutez les deux instructions d'autorisation suivantes aux stratégies IAM. Modi
     {
       "Sid": "DatadogRehydrateLogArchivesListBucket",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<NUMÉRO_COMPTE_AWS>:role/<NOM_RÔLE_IAM_DATADOG>"
+      },
       "Action": "s3:ListBucket",
       "Resource": [
         "arn:aws:s3:::<NOM_DU_BUCKET_1>",
@@ -324,7 +330,7 @@ Datadog prend également en charge le chiffrement côté serveur à l'aide d'un 
 
 Dès que vos paramètres d'archivage ont été correctement configurés sur votre compte Datadog, vos pipelines de traitement commencent à enrichir tous les logs ingérés par Datadog. Ceux-ci sont ensuite transmis à votre archive.
 
-Une fois vos paramètres d'archivage créés ou modifiés, il est parfois nécessaire d'attendre quelques minutes avant la prochaine tentative d'importation des archives. Les logs sont importés vers les archives toutes les 15 minutes. Par conséquent **attendez au moins 15 minutes** avant de vérifier que les archives sont bien importées vers votre compartiment de stockage depuis votre compte Datadog. Si l'archive est toujours en attente passé ce délai, nous vous conseillons de vérifier vos filtres d'inclusion pour vous assurer que la requête est valide et renvoie les événements de logs dans [Live Tail][10]. 
+Une fois vos paramètres d'archivage créés ou modifiés, il est parfois nécessaire d'attendre quelques minutes avant la prochaine tentative d'importation des archives. Les logs sont importés vers les archives toutes les 15 minutes. Par conséquent **attendez au moins 15 minutes** avant de vérifier que les archives sont bien importées vers votre compartiment de stockage depuis votre compte Datadog. Si l'archive est toujours en attente passé ce délai, nous vous conseillons de vérifier vos filtres d'inclusion pour vous assurer que la requête est valide et renvoie les événements de logs dans [Live Tail][10].
 
 Si Datadog détecte un problème de configuration, l'archive correspondante est mise en évidence dans la page de configuration. Cliquez sur l'icône d'erreur pour voir les mesures que vous devez prendre pour corriger ce problème.
 

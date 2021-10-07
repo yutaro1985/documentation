@@ -89,6 +89,9 @@ Datadog は、アーカイブからコンテンツをリハイドレートする
     {
       "Sid": "DatadogUploadAndRehydrateLogArchives",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<MY_AWS_ACCOUNT_NUMBER>:role/<MY_DATADOG_IAM_ROLE_NAME>"
+      },
       "Action": ["s3:PutObject", "s3:GetObject"],
       "Resource": [
         "arn:aws:s3:::<バケット名_1_/_バケットへのパス_任意_1>/*",
@@ -98,6 +101,9 @@ Datadog は、アーカイブからコンテンツをリハイドレートする
     {
       "Sid": "DatadogRehydrateLogArchivesListBucket",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<MY_AWS_ACCOUNT_NUMBER>:role/<MY_DATADOG_IAM_ROLE_NAME>"
+      },
       "Action": "s3:ListBucket",
       "Resource": [
         "arn:aws:s3:::<バケット名_1>",

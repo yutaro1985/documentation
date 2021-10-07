@@ -85,6 +85,9 @@ Afin de réintégrer des événements de log depuis vos archives, Datadog utilis
     {
       "Sid": "DatadogUploadAndRehydrateLogArchives",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<NUMÉRO_COMPTE_AWS>:role/<NOM_RÔLE_IAM_DATADOG>"
+      },
       "Action": ["s3:PutObject", "s3:GetObject"],
       "Resource": [
         "arn:aws:s3:::<NOM_DU_BUCKET_1_/_CHEMIN_FACULTATIF_DU_BUCKET_1>/*",
@@ -94,6 +97,9 @@ Afin de réintégrer des événements de log depuis vos archives, Datadog utilis
     {
       "Sid": "DatadogRehydrateLogArchivesListBucket",
       "Effect": "Allow",
+      "Principal": {
+          "AWS": "arn:aws:iam::<NUMÉRO_COMPTE_AWS>:role/<NOM_RÔLE_IAM_DATADOG>"
+      },
       "Action": "s3:ListBucket",
       "Resource": [
         "arn:aws:s3:::<NOM_DU_BUCKET_1>",

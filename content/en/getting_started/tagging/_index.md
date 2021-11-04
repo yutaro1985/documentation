@@ -27,14 +27,30 @@ Tags are a way of adding dimensions to Datadog telemetries so they can be filter
 
 Tagging binds different data types in Datadog, allowing for correlation and call to action between metrics, traces, and logs. This is accomplished with **reserved** tag keys. Here are some examples:
 
-| Tag Key   | Allows for                                                            |
-| --------- | --------------------------------------------------------------------- |
-| `host`    | Correlation between metrics, traces, processes, and logs              |
-| `device`  | Segregation of metrics, traces, processes, and logs by device or disk |
-| `source`  | Span filtering and automated pipeline creation for log management     |
-| `service` | Scoping of application specific data across metrics, traces, and logs |
-| `env`     | Scoping of application specific data across metrics, traces, and logs |
-| `version` | Scoping of application specific data across metrics, traces, and logs |
+| Tag Key   | Definition                                                            | Example                                                                        |
+| --------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `host`    | Correlation between metrics, traces, processes, and logs              | `i-00e2fe71c338a9f87`, `oracle-213-dd`, `vsphere-prod.c.fetch-171516.internal` |
+| `device`  | Segregation of metrics, traces, processes, and logs by device or disk | `tmpfs`, `c:`, `/dev/root`                                                     |
+| `source`  | Span filtering and automated pipeline creation for log management     | `java`, `mongodb`, `cloudtrail`                                                |
+| `service` | Scoping of application specific data across metrics, traces, and logs | `spring-storefront`, `mysql-orders`                                            |
+| `version` | Scoping of application specific data across metrics, traces, and logs | `v1.4.2`, `35.5553829`, `1.2.0-rc.3`                                           |
+| `env`     | The environment where your application is deployed                    | `dev`, `staging`, `production`                                                 |
+
+Other tags that Datadog automatically collects include:
+
+| Tag Key             |  Definition                                                                                                         | Example                           | Product                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------- | -------------------------- |
+| `cloud_provider`    | a company that delivers cloud computing based services and solutions to businesses and/or individuals               | `aws`, `azure`, `gcp`, `alibaba`  | Infrastructure |
+| `pod_name`          | name of a kubernetes pod                                                                                            | `need example here`               | Infrastructure |
+| `aws_account`       | Used to track your AWS account information. Your AWS ID is the twelve digit number located in AWS Account Settings. | `172597598159`                    | Infrastructure, Serverless |
+| `kube_cluster_name` | name of a kubernetes cluster                                                                                        | `need example here`               | Live Containers |
+| `container_id`      | name of a container                                                                                                 | `need example here`               | Live Containers |
+| `cluster-name`      | name of a cluster                                                                                                   | `need example here`               | Live Containers, Profiling |
+| `cluster_name`      | name of a cluster                                                                                                   | `need example here`               | Live Containers, Profiling |
+| `trace_id`          | a correlation id for a single request as it goes through various levels of technology                               | `5432093789420`                   | Logs, Traces, and RUM |
+| `language`          | programming language                                                                                                | `java`, `python`                  | Profiling |
+| `account_id`        | alias of `aws_account` used by lambda serverless product                                                            | `172597598159`                    | Serverless                 |
+| `functionname`      | aws lambda function name                                                                                            | `coupon-counter`                  | Serverless |
 
 ## Why it matters
 

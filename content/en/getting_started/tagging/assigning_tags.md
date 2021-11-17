@@ -93,12 +93,19 @@ hostname: mymachine.mydomain
 * Any data from hosts with the old hostname can be queried with the API.
 * To graph metrics with the old and new hostname in one graph, use [arithmetic between two metrics][5].
 
+#### Containers
+
+The Datadog Agent can create and assign tags to all metrics, traces, and logs emitted by a container based on its labels or environment variables when configured for [Autodiscovery][6]. See the [Docker Tag Extraction][7], [Kubernetes Tag Extraction][8], [Amazon ECS Tag Extraction][9] documentation for more details.
 
 [1]: /getting_started/integrations/
 [2]: /agent/guide/agent-configuration-files/
 [3]: /getting_started/tagging/#defining-tags
 [4]: /metrics/dogstatsd_metrics_submission/#host-tag-key
 [5]: /dashboards/querying/#arithmetic-between-two-metrics
+[6]: /agent/autodiscovery/
+[7]: /agent/docker/tag/
+[8]: /agent/kubernetes/tag/
+[9]: /agent/amazon_ecs/tags/
 {{% /tab %}}
 {{% tab "Agent v5" %}}
 

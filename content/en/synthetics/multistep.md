@@ -257,6 +257,9 @@ A test is considered `FAILED` if a step does not satisfy one or several assertio
   - `TIMEOUT: The request couldn’t be completed in a reasonable time.` indicates that the timeout happened at the TCP socket connection level.
   - `TIMEOUT: Retrieving the response couldn’t be completed in a reasonable time.` indicates that the timeout happened on the overall run (which includes TCP socket connection, data transfer, and assertions).
 
+`MALFORMED_RESPONSE` 
+: The remote server responded with a payload that does not comply with HTTP specifications.
+
 ## Permissions
 
 By default, only users with the [Datadog Admin and Datadog Standard roles][16] can create, edit, and delete Synthetic multistep API tests. To get create, edit, and delete access to Synthetic multistep API tests, upgrade your user to one of those two [default roles][16].
@@ -269,7 +272,7 @@ If you have access to the [custom role feature][17], add your user to any custom
 
 [1]: /synthetics/api_tests/http_tests
 [2]: /synthetics/api_tests/http_tests?tab=requestoptions#notify-your-team
-[3]: /synthetics/cicd_testing
+[3]: /synthetics/cicd_integrations
 [4]: /api/v1/synthetics/#get-all-locations-public-and-private
 [5]: /synthetics/private_locations
 [6]: /synthetics/api_tests/

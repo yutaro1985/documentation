@@ -277,7 +277,7 @@
   - repo_name: dd-sdk-android
     contents:
     - action: pull-and-push-file
-      branch: master
+      branch: mconstantin/rumm-1768/add-java-code-snipet
       globs:
       - 'docs/rum_getting_started.md'
       options:
@@ -313,7 +313,7 @@
               tag: "Homepage"
               text: "Explore Datadog RUM"
     - action: pull-and-push-file
-      branch: master
+      branch: mconstantin/rumm-1768/add-java-code-snipet
       globs:
       - 'docs/configure_rum_android_sdk.md'
       options:
@@ -349,7 +349,7 @@
               tag: "Homepage"
               text: "Explore Datadog RUM"
     - action: pull-and-push-file
-      branch: master
+      branch: mconstantin/rumm-1768/add-java-code-snipet
       globs:
       - 'docs/integrated_libraries_android.md'
       options:
@@ -434,7 +434,7 @@
     contents:
 
     - action: pull-and-push-file
-      branch: master
+      branch: mconstantin/rumm-1768/add-java-code-snipet
       globs:
       - 'docs/log_collection.md'
       options:
@@ -454,7 +454,7 @@
               text: "Learn how to explore your logs"
 
     - action: pull-and-push-file
-      branch: master
+      branch: mconstantin/rumm-1768/add-java-code-snipet
       globs:
       - 'docs/trace_collection.md'
       options:

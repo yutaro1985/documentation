@@ -63,9 +63,6 @@
         font-size: 16px;
         line-height: 22px;
         overflow-wrap: break-word;
-        @media (min-width: 768px) {
-            overflow-wrap: normal;
-        }
     }
 
     code {

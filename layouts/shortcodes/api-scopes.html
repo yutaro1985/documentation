@@ -1,4 +1,4 @@
-{{ $dot := . }}
+<!-- {{ $dot := . }}
 
 {{ $s := newScratch }}
 
@@ -78,18 +78,21 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
 <h2>Available Scopes</h2>
 
 <div class="table-request schema-table row has-no-expands">
   <div class="col-12">
     <div class="row table-header">
-      <div class="col-6 column">
+      <div class="col-2 column">
         <p class="font-semibold">Name</p>
       </div>
-      <div class="col-6 column">
+      <div class="col-4 column">
         <p class="font-semibold">Description</p>
+      </div>
+      <div class="col-6 column">
+        <p class="font-semibold">Endpoints that require this scope</p>
       </div>
     </div>
 
@@ -99,8 +102,11 @@
       <div class="row">
         <div class="col-12 first-column">
           <div class="row first-row">
-            <div class="col-6 column">
+            <div class="col-2 column">
               <p>{{ $scope }}</p>
+            </div>
+            <div class="col-4 column">
+              <p>{{ $scope_desc }}</p>
             </div>
             <div class="col-6 column">
               <p>{{ $scope_desc }}</p>

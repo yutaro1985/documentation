@@ -3,7 +3,7 @@
 {{ $s := newScratch }}
 {{ $paths := slice }}
 
-{{ range $versionIndex, $versionNum := (slice "v1" "v2") }}
+{{ range $versionNum := (slice "v1" "v2") }}
   {{ with (index $dot.Site.Data.api $versionNum).full_spec_deref }}
     {{ $spec := . }}
     {{ range $path_key, $path_object := $spec.paths }}
@@ -53,10 +53,14 @@
               <p>{{ $scope_desc }}</p>
             </div>
             <div class="col-6 column">
+              {{ $unique_paths := slice }}
               {{range $path_map := $paths}}
                 {{range $path, $path_scope := $path_map}}
                   {{if eq $path_scope $scope}}
-                    <p>{{$path}}</p>
+                    {{if not (in $unique_paths $path) }}
+                      {{$unique_paths = $unique_paths | append $path}}
+                      <p>{{$path}}</p>
+                    {{end}}
                   {{end}}
                 {{end}}
               {{end}}

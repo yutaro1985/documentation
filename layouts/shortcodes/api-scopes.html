@@ -1,22 +1,18 @@
 {{ $dot := . }}
 
 {{ $s := newScratch }}
-{{ $paths := newScratch }}
-<!-- I need the logic for the below section but not the html -->
-<!-- form your array in $s as it was  -->
+{{ $paths := slice }}
 
-<!-- iterates over v1 and v2 of full_spec_deref json files-->
 {{ range $versionIndex, $versionNum := (slice "v1" "v2") }}
   {{ with (index $dot.Site.Data.api $versionNum).full_spec_deref }}
     {{ $spec := . }}
     {{ range $path_key, $path_object := $spec.paths }}
-      <!-- ^ example of the paths iterator -->
       {{ range $action_type, $action := $path_object }}
         {{ range $security_object := $action.security }}
           {{ range $sec_key, $sec_val := $security_object }}
               {{ range $scope := $sec_val }}
                 {{ $s.SetInMap "scopes" $scope (index $spec.components.securitySchemes.AuthZ.flows.authorizationCode.scopes $scope) }}
-                {{ $paths.SetInMap "paths" $path_key $scope }}
+                {{ $paths = $paths | append (dict $path_key $scope) }}
               {{ end }}
           {{ end }}
         {{ end }}
@@ -30,7 +26,6 @@
 <h2>Available Scopes</h2>
 
 <h3>Dashboards</h3>
-
 <div class="table-request schema-table row has-no-expands">
   <!-- Header -->
   <div class="col-12">
@@ -58,9 +53,11 @@
               <p>{{ $scope_desc }}</p>
             </div>
             <div class="col-6 column">
-              {{range $path_key, $path_scope := $paths.Get "paths"}}
-                {{if eq $scope $path_scope }}
-                  <p>{{$path_key}}</p>
+              {{range $path_map := $paths}}
+                {{range $path, $path_scope := $path_map}}
+                  {{if eq $path_scope $scope}}
+                    <p>{{$path}}</p>
+                  {{end}}
                 {{end}}
               {{end}}
             </div>

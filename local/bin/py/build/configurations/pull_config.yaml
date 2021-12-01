@@ -256,6 +256,22 @@
           aliases:
             - /serverless/serverless_integrations/macro/
 
+  - repo_name: datadog-cdk-constructs
+    contents:
+    - action: pull-and-push-file
+      branch: main
+      globs:
+      - 'README.md'
+      options:
+        dest_path: '/serverless/libraries_integrations/'
+        file_name: 'cdk.md'
+        front_matters:
+          dependencies: ["https://github.com/DataDog/datadog-cdk-constructs/blob/main/README.md"]
+          title: Datadog CDK Construct Libraary
+          kind: documentation
+          aliases:
+            - /serverless/serverless_integrations/cdk/
+
   - repo_name: datadog-ci
     contents:
     - action: pull-and-push-file

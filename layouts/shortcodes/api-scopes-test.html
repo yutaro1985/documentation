@@ -2,35 +2,43 @@
 
 {{ $paths := slice }}
 {{ $apis := slice }}
-
+{{ $scopes := slice }}
+{{ $s := newScratch }}
 {{$paths_new := newScratch}}
 
 {{ range $versionNum := (slice "v1" "v2") }}
     {{ with (index $dot.Site.Data.api $versionNum).full_spec_deref }}
     {{ $spec := . }}
-    
+    {{ $tag := "" }}
     {{ range $path_key, $path_object := $spec.paths }}
+        {{ $scopes = slice }}
+        {{ $tag = "" }}
         {{range $action := $path_object}}
             {{$security_list := $action.security}}
             {{if $security_list}}
                 {{$security_map := index $security_list 1}}
                 {{if $security_map.AuthZ}}
-                    {{$tag := index $action.tags 0 }}
+                    {{$tag = index $action.tags 0 }}
                     {{$authZ := index $security_map.AuthZ 0}}
                     {{$description := index $spec.components.securitySchemes.AuthZ.flows.authorizationCode.scopes $authZ}}
                     {{if not (in $apis $tag)}}
                         {{$apis = $apis | append $tag }}
                     {{end}}
-                    {{$paths = $paths | append (dict "api" $tag "scope" $authZ "description" $description "endpoint" $path_key )}}
+                    {{if not (in $scopes $authZ)}}
+                        {{$scopes = $scopes | append $authZ }}
+                    {{end}}
+                    {{$paths = $paths | append (dict "api" $tag "scope" $authZ "description" $description "endpoint" $path_key "operationId" $action.operationId "summary" $action.summary )}}
                 {{end}}
             {{end}}
         {{end}}
+        {{ $s.SetInMap "scopes_by_tag" $tag $scopes }}
     {{ end }}
 
     {{ end }}
 {{ end }}
 
 <h2>Available Scopes</h2>
+{{ $slug := "" }}
 {{range $api := $apis}}
     <h3>{{$api}}</h3>
     <div class="table-request schema-table row has-no-expands">
@@ -48,33 +56,38 @@
                 </div>
             </div>
             <!-- Detail -->
-            {{range $path := $paths}}
-                {{if eq $path.api $api }}
-                    <div class="row">
-                        <div class="col-12 first-column">
-                            <div class="row first-row">
-                                <div class="col-3 column">
-                                    <p>{{$path.scope}}</p>
-                                </div>
-                                <div class="col-3 column">
-                                    <p>{{$path.description }}</p>
-                                </div>
-                                <div class="col-6 column">
-                                    <p>{{ $path.endpoint }} {{$path.api}}</p>
-                                </div>
+            {{ $this_tags_scopes := (slice) }}
+            {{ $this_tags_scopes = (index ($s.Get "scopes_by_tag") $api) }}
+            {{ range $scope := $this_tags_scopes }}
+                <div class="row">
+                    <div class="col-12 first-column">
+                        <div class="row first-row">
+                            <div class="col-3 column">
+                                <p>{{ $scope }}</p>
+                            </div>
+                            <div class="col-3 column">
+                                <p>{{ (index $paths 0).description }}</p>
+                            </div>
+                            <div class="col-6 column">
+                                {{ range $path := $paths}}
+                                    {{if and (eq $path.api $api) (eq $path.scope $scope) }}
+                                      {{ $slug = (replaceRE " " "-" ($path.summary | humanize | lower)) }}
+                                      <p><a href="{{ (print "api/latest/" (replaceRE " " "-" ($path.api | humanize | lower)) "/") | absLangURL }}#{{ $slug }}">{{$path.summary }}</a></p>
+                                    {{end}}
+                              {{end}}
                             </div>
                         </div>
-                    </div>                   
-                {{end}}
+                    </div>
+                </div>
             {{end}}
         </div>
     </div>
 {{end}}
-{{$paths}}
 
 
 
-<!-- 
+
+<!--
 FORM THE ARRAY OF OBJECTS
   loop over the paths
     for each path, if the path has an Auth Z
@@ -83,11 +96,11 @@ FORM THE ARRAY OF OBJECTS
         $scope := "" (path/action/security/AuthZ level)
         $decription := "" (defined already)
         $endpoint := "" (path key)
-        
+
         get to the action level, iterate to "tag"
         {"tag" }
  -->
-<!-- 
+<!--
 {
   tag: tag,
   scope: scope,
@@ -106,10 +119,10 @@ build a new scratch (map[]) with each key being a tag
 this way i can target the tag with this syntax [SetInMap $tag newKey newValue]
 { map[]
     unique_tag:
-        unique_scope: 
+        unique_scope:
             description: description,
             endpoints: []
-        unique_scope: 
+        unique_scope:
             description: description,
             endpoints: []
         ...

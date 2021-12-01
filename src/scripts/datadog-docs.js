@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     if (!document.body.classList.contains('api')){
         $(window).on('resize scroll', function() {
-            const headerHeight = $('body > header').height();
+            const headerHeight = $('body .main-nav').height();
             const padding = 200;
             $('.sidenav-nav').css(
                 'maxHeight',
@@ -66,7 +66,7 @@ $(document).ready(function () {
             );
         });
     }
-    
+
     updateMainContentAnchors();
 
     // add targer-blank to external links
@@ -151,7 +151,7 @@ function getPathElement(event = null) {
         const dataPathString = `${docsActiveSection}/guide`;
 
         sideNavPathElement = document.querySelector(`.side [data-path*="${dataPathString}"]`);
-        mobileNavPathElement = document.querySelector(`header [data-path*="${dataPathString}"]`); 
+        mobileNavPathElement = document.querySelector(`header [data-path*="${dataPathString}"]`);
     }
 
     if (path.includes('account_management/billing')) {
@@ -252,7 +252,7 @@ function updateSidebar(event) {
                 }
             }
         })
-        
+
     } else {
         if (event.target.closest('li').querySelector('a')) {
             event.target
@@ -352,7 +352,7 @@ function rulesListClickHandler(event, pathString) {
     if (event.target.matches('#rules .list-group .js-group a.js-page')) {
         event.preventDefault();
         const targetURL = event.target.href;
-        
+
         if (targetURL.includes(pathString)) {
             loadPage(targetURL);
             window.history.pushState({}, '' /* title */, targetURL);
@@ -412,3 +412,4 @@ window.addEventListener(
     },
     false
 );
+

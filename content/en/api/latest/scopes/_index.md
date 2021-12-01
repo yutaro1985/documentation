@@ -13,6 +13,6 @@ Ways to use scopes with Datadog:
 - Add scopes to OAuth2 clients for your [Datadog Apps][1]
 - Add scopes for your application keys
 
+{{< api-scopes-test >}}
 
-{{< api-scopes >}}
 [1]: https://docs.datadoghq.com/developers/datadog_apps/#oauth-api-access

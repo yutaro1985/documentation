@@ -93,6 +93,7 @@
     <!-- If we have multiple endpoints for a version output them next to each other -->
     {{ range $versionIndex, $versionNum := .Params.versions }}
       {{ $adat := (index (index $dot.Site.Data.api $versionNum) "full_spec_deref") }}
+      {{ $codeExamples := (index (index $dot.Site.Data.api $versionNum) "CodeExamples") }}
 
       <!-- Get the general API server url for this version -->
       {{ $generalRegions := partial "api/regions.html" (dict "servers" $adat.servers) }}
@@ -157,13 +158,13 @@
                     {{ partial "api/arguments.html" (dict "context" $dot "endpoint" $endpoint) }}
 
                     <!-- request body -->
-                    {{ partial "api/request-body.html" (dict "context" $dot "body" $endpoint.action.requestBody "resourcePage" $resourcePage "operationid" $endpoint.action.operationId "translate_action" $translate_action) }}
+                    {{ partial "api/request-body.html" (dict "context" $dot "body" $endpoint.action.requestBody "resourcePage" $resourcePage "operationid" $endpoint.action.operationId "translate_action" $translate_action "codeExamples" (index $codeExamples $endpoint.action.operationId)) }}
 
                     <!-- response -->
                     {{ partial "api/response.html" (dict "responses" $endpoint.action.responses "resourcePage" $resourcePage "operationid" $endpoint.action.operationId "translate_action" $translate_action "version" $versionNum) }}
 
                     <!-- code example -->
-                    {{ partial "api/code-example.html" (dict "context" $dot "resourcePage" $resourcePage "operationid" $endpoint.action.operationId "securitySchemes" $adat.components.securitySchemes "endpoint" $endpoint) }}
+                    {{ partial "api/code-example.html" (dict "context" $dot "resourcePage" $resourcePage "operationid" $endpoint.action.operationId "securitySchemes" $adat.components.securitySchemes "endpoint" $endpoint "codeExamples" (index $codeExamples $endpoint.action.operationId)) }}
                 </div>
             </div>
         </div>

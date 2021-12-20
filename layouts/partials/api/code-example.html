@@ -1,6 +1,7 @@
 {{ $context := .context }}
 {{ $dot := . }}
 {{ $operationid := .operationid }}
+{{ $codeExamples := .codeExamples }}
 {{ $resourcePage := .resourcePage }}
 {{ $endpoint := .endpoint }}
 {{ $securitySchemes := .securitySchemes }}
@@ -72,12 +73,64 @@
 
         {{ if ne $file_extension "sh"}}
           <div class="code-snippet-wrapper js-code-block" data-code-lang-block="{{ $lang.name }}">
+
+            {{ if $codeExamples }}
+            <div id="accordion-{{ $operationid }}-code-example-{{ $lang.name }}">
+              <div class="card">
+                <div class="card-header p-0">
+                  <h5 class="m-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#{{ $operationid }}-code-example-{{ $lang.name }}" aria-expanded="false" aria-controls="collapseTwo">
+                      Default
+                    </button>
+                  </h5>
+                </div>
+                <div id="{{ $operationid }}-code-example-{{ $lang.name }}" class="collapse show" data-parent="#accordion-{{ $operationid }}-code-example-{{ $lang.name }}">
+                  <div class="card-body p-0">
+                    <div class="code-snippet">
+                      <div class="code-button-wrapper position-absolute">
+                          <button class="btn text-primary js-copy-button">{{ i18n "copy" }}</button>
+                      </div>
+                      {{ highlight $file_content $lang.syntax "" }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{ range $codeExamples }}
+              {{ if ne .suffix "" }}
+              <div class="card">
+                <div class="card-header p-0">
+                  <h5 class="m-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#{{ $operationid }}-code-example-{{ $lang.name }}{{ .suffix }}" aria-expanded="false" aria-controls="collapseTwo">
+                      {{ .description }}
+                    </button>
+                  </h5>
+                </div>
+                <div id="{{ $operationid }}-code-example-{{ $lang.name }}{{ .suffix }}" class="collapse" data-parent="#accordion-{{ $operationid }}-code-example-{{ $lang.name }}">
+                  <div class="card-body p-0">
+                    {{ printf "%s%s.%s" $operationid .suffix $file_extension}}
+                    {{ range $resourcePage.Resources.Match (printf "%s%s.%s" $operationid .suffix $file_extension) }}
+                    <div class="code-snippet">
+                      <div class="code-button-wrapper position-absolute">
+                          <button class="btn text-primary js-copy-button">{{ i18n "copy" }}</button>
+                      </div>
+                      {{ highlight .Content $lang.syntax "" }}
+                    </div>
+                  </div>
+                    {{ end}}
+                  </div>
+                </div>
+              </div>
+              {{ end }}
+              {{ end }}
+            </div>
+            {{ else }}
             <div class="code-snippet">
               <div class="code-button-wrapper position-absolute">
                   <button class="btn text-primary js-copy-button">{{ i18n "copy" }}</button>
               </div>
               {{ highlight $file_content $lang.syntax "" }}
             </div>
+            {{ end }}
 
             <h4>Instructions</h4>
             <p>First <a href="{{ "api/latest/" | absLangURL }}?code-lang={{ $lang.name }}">install the library and its dependencies</a> and then save the example to <code>{{ $lang.example_file }}</code> and run following commands:</p>

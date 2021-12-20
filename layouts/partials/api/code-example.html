@@ -97,6 +97,8 @@
               </div>
               {{ range $codeExamples }}
               {{ if ne .suffix "" }}
+              {{ printf "%s%s.%s" $operationid .suffix $file_extension}}
+              {{ range $resourcePage.Resources.Match (printf "%s%s.%s" $operationid .suffix $file_extension) }}
               <div class="card">
                 <div class="card-header p-0">
                   <h5 class="m-0">
@@ -107,8 +109,6 @@
                 </div>
                 <div id="{{ $operationid }}-code-example-{{ $lang.name }}{{ .suffix }}" class="collapse" data-parent="#accordion-{{ $operationid }}-code-example-{{ $lang.name }}">
                   <div class="card-body p-0">
-                    {{ printf "%s%s.%s" $operationid .suffix $file_extension}}
-                    {{ range $resourcePage.Resources.Match (printf "%s%s.%s" $operationid .suffix $file_extension) }}
                     <div class="code-snippet">
                       <div class="code-button-wrapper position-absolute">
                           <button class="btn text-primary js-copy-button">{{ i18n "copy" }}</button>
@@ -116,10 +116,10 @@
                       {{ highlight .Content $lang.syntax "" }}
                     </div>
                   </div>
-                    {{ end}}
                   </div>
                 </div>
               </div>
+              {{ end}}
               {{ end }}
               {{ end }}
             </div>

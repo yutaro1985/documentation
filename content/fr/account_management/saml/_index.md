@@ -24,15 +24,11 @@ Voici une présentation vidéo de deux minutes à ce sujet :
 
 ## Configurer SAML
 
-Si vous êtes [administrateur Datadog][3], passez votre curseur sur votre nom d’utilisateur dans le menu de navigation sur la gauche pour afficher l’option [Configure SAML][4] dans le menu déroulant.
-
-{{< img src="account_management/saml/saml_configure.png" alt="SAML - Configuration"  style="width:50%;" >}}
+Dans l'application Datadog, survolez votre nom d'utilisateur et sélectionnez Paramètres de l'organisation. Sélectionnez la page Login Methods et cliquez sur **Configure** sous SAML.
 
 Celle-ci vous redirige vers la page **SAML Single Sign On Configuration** :
 
 1. Importez les métadonnées de votre fournisseur d’identité SAML en cliquant sur le bouton **Choose File**.
-
-    {{< img src="account_management/saml/saml_choose_file.png" alt="SAML - Sélection d'un fichier"  >}}
 
     Après avoir choisi le fichier, cliquez sur **Upload File**.
 

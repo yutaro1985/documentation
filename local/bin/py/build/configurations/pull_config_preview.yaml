@@ -196,7 +196,7 @@
 
   - repo_name: dd-trace-rb
     contents:
-    - action: pull-and-push-file
+    - action: pull-and-push-folder
       branch: release
       globs:
       - 'docs/*'

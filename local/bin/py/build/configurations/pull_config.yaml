@@ -195,26 +195,14 @@
 
   - repo_name: dd-trace-rb
     contents:
-    - action: pull-and-push-file
-      branch: release
-      globs:
-      - 'docs/GettingStarted.md'
-      options:
-        dest_path: '/tracing/setup_overview/setup/'
-        file_name: 'ruby.md'
-        front_matters:
-          dependencies: ["https://github.com/DataDog/dd-trace-rb/blob/master/docs/GettingStarted.md"]
-          title: Tracing Ruby Applications
-          kind: documentation
-          code_lang: ruby
-          type: multi-code-lang
-          code_lang_weight: 15
-          aliases:
-          - /tracing/ruby/
-          - /tracing/languages/ruby/
-          - /tracing/setup/ruby/
-          - /tracing/setup_overview/ruby/
-          - /agent/apm/ruby/
+      - action: pull-and-push-file
+        branch: release
+        globs:
+          - 'docs/*'
+        options:
+          dest_dir: '/tracing/setup_overview/setup/ruby/'
+          front_matters:
+            dependencies: [ "https://github.com/DataDog/dd-trace-rb/blob/master/docs/" ]
 
   - repo_name: datadog-serverless-functions
     contents:

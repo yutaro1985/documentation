@@ -202,6 +202,7 @@
       - 'docs/*'
       options:
         dest_dir: '/tracing/setup_overview/setup/ruby/'
+        path_to_remove: 'docs/'
         front_matters:
           dependencies: ["https://github.com/DataDog/dd-trace-rb/blob/master/docs/"]
 

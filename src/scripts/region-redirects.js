@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import config from '../../regions.config';
 
 // need to wait for DOM since this script is loaded in the <head>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {    
     const regionSelector = document.querySelector('.js-region-select');
 
     if (regionSelector) {
@@ -14,8 +14,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 regionOnChangeHandler(region);
             })
         })
+
+        if (window.location.hash) {
+            redirectRegionFromHash();
+        }
     }
 });
+
+// When link contains hash that exists on the page but outside of user's currently set region.
+function redirectRegionFromHash() {
+    const { hash } = window.location;
+    const anchorDiv = document.getElementById(hash.replace('#', ''));
+
+    if (anchorDiv) {
+        const parentRegionContainer = anchorDiv.closest('[data-region]');
+
+        if (parentRegionContainer.classList.value.includes('d-none')) {
+            const regionList = parentRegionContainer.dataset.region;
+            const region = regionList.split(',')[0];
+
+            if (region) {
+                redirectToRegion(region);
+                anchorDiv.scrollIntoView();
+            }
+        }
+    }
+}
 
 function replaceButtonInnerText(value) {
     const selectedRegion = config.dd_datacenter[value];

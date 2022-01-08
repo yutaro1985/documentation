@@ -26,19 +26,15 @@ further_reading:
 Datadog Node.js Profiler is currently in public beta. Datadog recommends evaluating the profiler in a non-sensitive environment before deploying in production.
 </div>
 
-The profiler is shipped within Datadog tracing libraries. If you are already using [APM to collect traces][1] for your application, you can skip installing the library and go directly to enabling the profiler.
-
 ## Requirements
 
 The Datadog Profiler requires at least Node.js 12, but Node.js 16 or higher is recommended. **If you use a version of Node.js earlier than 16, some applications see tail latency spikes every minute when starting the next profile.**
 
 ## Installation
 
-To begin profiling applications:
+1. Install the Datadog Agent or upgrade it to version [7.20.2][1]+ or [6.20.2][2]+ if needed.
 
-1. If you are already using Datadog, upgrade your Agent to version [7.20.2][2]+ or [6.20.2][3]+.
-
-2. Run `npm install --save dd-trace@latest` to add a dependency on the `dd-trace` module which includes the profiler.
+2. The profiler and tracer are shipped together. Install or upgrade to version 1.5.1+ if needed: `npm install --save dd-trace@latest`.
 
 3. Enable the profiler:
 
@@ -79,11 +75,11 @@ const tracer = require('dd-trace/init')
 {{% /tab %}}
 {{< /tabs >}}
 
-4. A minute or two after starting your Node.js application, your profiles will show up on the [APM > Profiler page][4].
+4. A minute or two after starting your Node.js application, your profiles will show up on the [APM > Profiler page][3].
 
 ## Not sure what to do next?
 
-The [Getting Started with Profiler][5] guide takes a sample service with a performance problem and shows you how to use Continuous Profiler to understand and fix the problem.
+The [Getting Started with Profiler][4] guide takes a sample service with a performance problem and shows you how to use Continuous Profiler to understand and fix the problem.
 
 ## Experiencing high overhead?
 
@@ -93,8 +89,7 @@ Node.js 16 or higher is recommended. On earlier versions, some applications see 
 
 {{< partial name="whats-next/whats-next.html" >}}
 
-[1]: /tracing/setup_overview/
-[2]: https://app.datadoghq.com/account/settings#agent/overview
-[3]: https://app.datadoghq.com/account/settings?agent_version=6#agent
-[4]: https://app.datadoghq.com/profiling
-[5]: /getting_started/profiler/
+[1]: https://app.datadoghq.com/account/settings#agent/overview
+[2]: https://app.datadoghq.com/account/settings?agent_version=6#agent
+[3]: https://app.datadoghq.com/profiling
+[4]: /getting_started/profiler/

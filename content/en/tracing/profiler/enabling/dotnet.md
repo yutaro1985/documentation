@@ -48,7 +48,7 @@ Datadog .NET Profiler is currently in public beta. Datadog recommends evaluating
   <strong>Note:</strong> Datadog's.NET Tracer and Profiler rely on the .NET CLR Profiling API. This API allows only one subscriber (for example, APM). To ensure maximum visibility, run only one APM solution in your application environment.
 </div>
 
-1. If you are already using Datadog, upgrade your agent to version [7.20.2][1]+ or [6.20.2][2]+.
+1. Install the Datadog Agent or upgrade it to version [7.20.2][1]+ or [6.20.2][2]+ if needed.
 
 2. The profiler and tracer are shipped together. Install or upgrade to version TODO+ if needed, using the [.NET Monitoring MSI installer][3]. Continuous Profiler only supports 64-bit Windows, with 32-bit support coming soon, so you'll want the file like `datadog-dotnet-apm-2.1.0-x64.msi`.
 

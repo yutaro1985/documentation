@@ -26,9 +26,6 @@ The profiler is shipped within Datadog tracing libraries. If you are already usi
 
 ## Requirements
 
-The Datadog Profiler requires Python 2.7+ and Agent version [7.20.2][2]+ or
-[6.20.2][3]+.
-
 The following profiling features are available depending on your Python version:
 
 |      Feature         | Supported Python versions          |
@@ -41,20 +38,20 @@ The following profiling features are available depending on your Python version:
 
 ## Installation
 
-Install `ddtrace`, which provides both tracing and profiling functionalities:
+1. Install the Datadog Agent or upgrade it to version [7.20.2][2]+ or [6.20.2][3]+ if needed.
 
-```shell
-pip install ddtrace
-```
+2. The profiler and tracer are shipped together. Install or upgrade to `ddtrace` version 0.40+:
 
-**Note**: Profiling requires the `ddtrace` library version 0.40+.
+   ```shell
+   pip install ddtrace
+   ```
 
-If you are using a platform where `ddtrace` binary distribution is not available, install a development environment.
+   If you are using a platform where `ddtrace` binary distribution is not available, install a development environment.
 
-For example, on Alpine Linux, this can be done with:
-```shell
-apk install gcc musl-dev linux-headers
-```
+   For example, on Alpine Linux, this can be done with:
+   ```shell
+   apk install gcc musl-dev linux-headers
+   ```
 
 ## Usage
 

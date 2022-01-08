@@ -30,17 +30,13 @@ The Datadog Profiler requires Go 1.12+.
 
 ## Installation
 
-To begin profiling applications:
+1. Install the Datadog Agent or upgrade it to version [7.20.2][2]+ or [6.20.2][3]+ if needed.
 
-1. If you are already using Datadog, upgrade your agent to version [7.20.2][2]+ or [6.20.2][3]+.
-
-2. Get `dd-trace-go` using the command:
+2. The profiler and tracer are shipped together. Install or upgrade to version 1.23.0+ if needed:
 
     ```shell
     go get gopkg.in/DataDog/dd-trace-go.v1/profiler
     ```
-
-     **Note**: Profiler is available in the `dd-trace-go` library for versions 1.23.0+.
 
 3. Import the [profiler][4] at the start of your application:
 

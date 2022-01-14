@@ -3,6 +3,11 @@ The APM UI provides many tools to troubleshoot application performance and corre
 
 ## Glossary
 
+<img src="/images/tracing/visualization/execution-time2.png" width="50%" style="center">
+
+<div class="alert alert-warning"><strong>Note:</strong> Text</div>
+
+![Span](/images/tracing/visualization/execution-time2.png)
 
 ### Added this heading
 

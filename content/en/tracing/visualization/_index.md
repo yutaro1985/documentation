@@ -24,7 +24,6 @@ further_reading:
 
 {{< jqmath-vanilla >}}
 
-
 {{% test/test-reuse %}}
 
 **Note:** Indexed Spans were formerly known as Analyzed Spans and renamed with the launch of Tracing Without Limits on October 20th, 2020.
@@ -45,7 +44,7 @@ The screenshot below is a microservice distributed system for an e-commerce site
 
 {{< img src="tracing/visualization/service_map.png" alt="service map" >}}
 
-All services can be found in the [Service List][3] and visually represented on the [Service Map][5]. Each service has its own [Service page][4] where [trace metrics](#trace-metrics) like throughput, latency, and error rates can be viewed and inspected. Use these metrics to create dashboard widgets, create monitors, and see the performance of every resource such as a web endpoint or database query belonging to the service.
+All services can be found in the [Service List][3] and visually represented on the [Service Map][4]. Each service has its own [Service page][5] where [trace metrics](#trace-metrics) like throughput, latency, and error rates can be viewed and inspected. Use these metrics to create dashboard widgets, create monitors, and see the performance of every resource such as a web endpoint or database query belonging to the service.
 
 {{< img src="tracing/visualization/service_page.mp4" video="true" alt="service page" >}}
 
@@ -55,7 +54,7 @@ Don’t see the HTTP endpoints you were expecting on the Service page? In APM, e
 
 ## Resources
 
-Resources represent a particular domain of a customer application. They could typically be an instrumented web endpoint, database query, or background job. For a web service, these resources can be dynamic web endpoints that are grouped by a static span name -  `web.request`. In a database service, these would be database queries with the span name `db.query`. For example the `web-store` service has automatically instrumented resources - web endpoints - which handle checkouts, updating_carts, add_item, etc. Each resource has its own [Resource page][5] with [trace metrics](#trace-metrics) scoped to the specific endpoint. Trace metrics can be used like any other Datadog metric - they are exportable to a dashboard or can be used to create monitors. The Resource page also shows the span summary widget with an aggregate view of [spans](#spans) for all [traces](#trace), latency distribution of requests, and traces which show requests made to this endpoint.
+Resources represent a particular domain of a customer application. They could typically be an instrumented web endpoint, database query, or background job. For a web service, these resources can be dynamic web endpoints that are grouped by a static span name -  `web.request`. In a database service, these would be database queries with the span name `db.query`. For example the `web-store` service has automatically instrumented resources - web endpoints - which handle checkouts, updating_carts, add_item, etc. Each resource has its own [Resource page][4] with [trace metrics](#trace-metrics) scoped to the specific endpoint. Trace metrics can be used like any other Datadog metric - they are exportable to a dashboard or can be used to create monitors. The Resource page also shows the span summary widget with an aggregate view of [spans](#spans) for all [traces](#trace), latency distribution of requests, and traces which show requests made to this endpoint.
 
 {{< img src="tracing/visualization/resource_page.mp4" video="true" alt="resource page" >}}
 
@@ -120,7 +119,7 @@ Trace metrics can be exported to a dashboard from the *Service* or *Resource* pa
 
 ### Monitoring
 
-Trace metrics are useful for monitoring. APM monitors can be set up on the [New Monitors][15], [Service][4], or [Resource][5] page. A set of suggested monitors is available on the [Service][4], or [Resource][5] page.
+Trace metrics are useful for monitoring. APM monitors can be set up on the [New Monitors][15], [Service][5], or [Resource][4] page. A set of suggested monitors is available on the [Service][5], or [Resource][4] page.
 
 {{< img src="tracing/visualization/trace_metric_monitor.mp4" video="true" alt="trace metrics monitor" >}}
 
@@ -181,8 +180,8 @@ When child spans are concurrent, execution time is calculated by dividing the ov
 [1]: /tracing/setup/
 [2]: /tracing/visualization/services_list/
 [3]: /tracing/visualization/services_map/
-[4]: /tracing/visualization/service/
-[5]: /tracing/visualization/resource/
+[4]: /tracing/visualization/resource/
+[5]: /tracing/visualization/service/
 [6]: /tracing/opentracing/java/#create-a-distributed-trace-using-manual-instrumentation-with-opentracing
 [7]: /tracing/manual_instrumentation/
 [8]: /tracing/opentracing/

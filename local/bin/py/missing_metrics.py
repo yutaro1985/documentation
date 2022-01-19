@@ -79,6 +79,8 @@ def get_dd_metrics(csv_metrics, keys, t):
     metrics_send = []
     metrics_print = []
 
+    print('\x1b[32mINFO\x1b[0m: {} metrics found from the last 5 days...'.format(len(dd_metrics)))
+
     for metric in dd_metrics:
         i = 0
         if metric.startswith(t):
@@ -102,7 +104,7 @@ def get_dd_metrics(csv_metrics, keys, t):
                             'tags': ['docs_metric:' + metric, 'docs_ns:' + docs_tags[0]]
                         })
     # print(len(metrics_send))
-    print('\x1b[32mINFO\x1b[0m: {} metrics to send found...'.format(len(metrics_send)))
+    print('\x1b[32mINFO\x1b[0m: {} metrics to send collected...'.format(len(metrics_send)))
     return metrics_send
 
 

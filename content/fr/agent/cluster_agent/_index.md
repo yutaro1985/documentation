@@ -2,27 +2,28 @@
 title: Agent de cluster pour Kubernetes
 kind: documentation
 aliases:
-  - /fr/agent/kubernetes/cluster/
+- /agent/kubernetes/cluster/
 further_reading:
-  - link: https://www.datadoghq.com/blog/datadog-cluster-agent/
-    tag: Blog
-    text: Présentation de l'Agent de cluster Datadog
-  - link: https://www.datadoghq.com/blog/autoscale-kubernetes-datadog/
-    tag: Blog
-    text: Mettre à l'échelle vos charges de travail Kubernetes avec n'importe quelle métrique Datadog
-  - link: /agent/cluster_agent/clusterchecks/
-    tag: Documentation
-    text: Exécuter des checks de cluster avec Autodiscovery
-  - link: /agent/kubernetes/daemonset_setup/
-    tag: Documentation
-    text: Exécuter l'Agent avec un DaemonSet Kubernetes
-  - link: /agent/kubernetes/integrations/
-    tag: Documentation
-    text: Intégrations personnalisées
-  - link: https://github.com/DataDog/datadog-agent/blob/master/docs/cluster-agent/GETTING_STARTED.md#troubleshooting
-    tag: Github
-    text: Dépanner l'Agent de cluster Datadog
+- link: "https://www.datadoghq.com/blog/datadog-cluster-agent/"
+  tag: Blog
+  text: Présentation de l'Agent de cluster Datadog
+- link: "https://www.datadoghq.com/blog/autoscale-kubernetes-datadog/"
+  tag: Blog
+  text: Mettre à l'échelle vos charges de travail Kubernetes avec n'importe quelle métrique Datadog
+- link: /agent/cluster_agent/clusterchecks/
+  tag: Documentation
+  text: Exécuter des checks de cluster avec Autodiscovery
+- link: /agent/kubernetes/daemonset_setup/
+  tag: Documentation
+  text: Exécuter l'Agent avec un DaemonSet Kubernetes
+- link: /agent/kubernetes/integrations/
+  tag: Documentation
+  text: Intégrations personnalisées
+- link: "https://github.com/DataDog/datadog-agent/blob/master/docs/cluster-agent/GETTING_STARTED.md#troubleshooting"
+  tag: Github
+  text: Dépanner l'Agent de cluster Datadog
 ---
+
 ## Présentation
 
 L'Agent de cluster Datadog fournit une méthode simplifiée et centralisée de collecte des données de surveillance au niveau des clusters. En agissant comme un proxy entre le serveur d'API et les Agents basés sur des nœuds, l'Agent de cluster permet de réduire la charge du serveur. Il transmet également les métadonnées de cluster aux Agents de nœud afin d'enrichir les métadonnées des métriques recueillies localement.

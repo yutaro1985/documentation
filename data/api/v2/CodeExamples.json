@@ -1,4 +1,50 @@
 {
+  "CreateSecurityMonitoringRule": [
+    {
+      "suffix": "",
+      "description": "Create a detection rule returns \"OK\" response"
+    },
+    {
+      "suffix": "_498211763",
+      "description": "Create a detection rule with type 'workload_security' returns \"OK\" response"
+    }
+  ],
+  "CreateSecurityFilter": [
+    {
+      "suffix": "",
+      "description": "Create a security filter returns \"OK\" response"
+    }
+  ],
+  "DeleteSecurityFilter": [
+    {
+      "suffix": "_555029489",
+      "description": "Delete a security filter returns \"No Content\" response"
+    }
+  ],
+  "DeleteSecurityMonitoringRule": [
+    {
+      "suffix": "",
+      "description": "Delete an existing rule returns \"OK\" response"
+    }
+  ],
+  "GetSecurityFilter": [
+    {
+      "suffix": "",
+      "description": "Get a security filter returns \"OK\" response"
+    }
+  ],
+  "ListSecurityFilters": [
+    {
+      "suffix": "",
+      "description": "Get all security filters returns \"OK\" response"
+    }
+  ],
+  "UpdateSecurityFilter": [
+    {
+      "suffix": "",
+      "description": "Update a security filter returns \"OK\" response"
+    }
+  ],
   "CreateCloudWorkloadSecurityAgentRule": [
     {
       "suffix": "",
@@ -333,52 +379,6 @@
     {
       "suffix": "",
       "description": "Update a role returns \"OK\" response"
-    }
-  ],
-  "CreateSecurityMonitoringRule": [
-    {
-      "suffix": "",
-      "description": "Create a detection rule returns \"OK\" response"
-    },
-    {
-      "suffix": "_498211763",
-      "description": "Create a detection rule with type 'workload_security' returns \"OK\" response"
-    }
-  ],
-  "CreateSecurityFilter": [
-    {
-      "suffix": "",
-      "description": "Create a security filter returns \"OK\" response"
-    }
-  ],
-  "DeleteSecurityFilter": [
-    {
-      "suffix": "_555029489",
-      "description": "Delete a security filter returns \"No Content\" response"
-    }
-  ],
-  "DeleteSecurityMonitoringRule": [
-    {
-      "suffix": "",
-      "description": "Delete an existing rule returns \"OK\" response"
-    }
-  ],
-  "GetSecurityFilter": [
-    {
-      "suffix": "",
-      "description": "Get a security filter returns \"OK\" response"
-    }
-  ],
-  "ListSecurityFilters": [
-    {
-      "suffix": "",
-      "description": "Get all security filters returns \"OK\" response"
-    }
-  ],
-  "UpdateSecurityFilter": [
-    {
-      "suffix": "",
-      "description": "Update a security filter returns \"OK\" response"
     }
   ],
   "CreateServiceAccountApplicationKey": [

@@ -11,6 +11,8 @@ further_reading:
   text: "Learn more about language and framework compatibility"
 ---
 
+{{< img src="/security_platform/application_security/app-sec-landing-page.png" alt="The Application Security landing page in Datadog, which displays your services, suspicious requests, and detected signals" width="75%">}}
+
 Datadog Application Security provides protection against application-level threats by identifying and blocking attacks that target code-level vulnerabilities, such as SQL injections and cross-site scripting (XSS) exploits.
 
 Application Security leverages Datadog [tracing libraries][1], the [Datadog Agent][2], and in-app detection rules to detect threats in your application environment and trigger signals whenever a vulnerability or attack occurs.

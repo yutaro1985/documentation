@@ -70,6 +70,23 @@ containerDefinitions": [
 2. Assign the private IP address for each underlying instance your containers are running in your application container to the `DD_AGENT_HOST` environment variable. This allows your application traces to be shipped to the Agent. 
 
 {{< tabs >}}
+{{< tab "Test" >}}
+```java
+    public class SampleApplication extends Application {
+        
+        @Override
+        public void onCreate() {
+            super.onCreate();
+            Configuration configuration =
+                    new Configuration.Builder(true, true, true, true)
+                            .build();
+            Credentials credentials = new Credentials( < CLIENT_TOKEN >, <ENV_NAME >, <APP_VARIANT_NAME >, <
+            APPLICATION_ID >);
+            Datadog.initialize(this, credentials, configuration, trackingConsent);
+        }
+    }
+```
+{{< /tab >}}
 {{% tab "EC2 metadata endpoint" %}}
 
 The [Amazon’s EC2 metadata endpoint][1] allows discovery of the private IP address. To get the private IP address for each host, curl the following URL:

@@ -71,7 +71,7 @@ containerDefinitions": [
 
 {{< tabs >}}
 {{< tab "Test" >}}
-```java
+{{< code-block lang="java" >}}
     public class SampleApplication extends Application {
         
         @Override
@@ -85,7 +85,9 @@ containerDefinitions": [
             Datadog.initialize(this, credentials, configuration, trackingConsent);
         }
     }
-```
+{{< /code-block >}}
+
+# Test Header
 {{< /tab >}}
 {{% tab "EC2 metadata endpoint" %}}
 

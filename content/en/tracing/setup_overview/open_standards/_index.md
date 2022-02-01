@@ -331,12 +331,11 @@ Since versions 6.32.0 and 7.32.0, the Datadog Agent supports OTLP traces and met
 The OTLP ingestion is configured through the `datadog.yaml` file. The following configuration enables the HTTP and gRPC endpoints on the default ports (4317 for gRPC and 4318 for HTTP):
 
 ```yaml
-experimental:
-  otlp:
-    receiver:
-      protocols:
-        grpc:
-        http:
+otlp:
+receiver:
+ protocols:
+   grpc:
+   http:
 ```
 
 The `receiver` section follows the [OpenTelemetry Collector OTLP receiver configuration schema][18].
